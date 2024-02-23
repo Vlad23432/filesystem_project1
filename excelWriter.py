@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 
 
 class ExcelWriter:
@@ -50,6 +51,8 @@ class ExcelWriter:
         :return: None
         """
         self.wb.save(os.path.join(path, name))
+
+    def csv_to_excel(self, filepath: str):
 
 
 if __name__ == "__main__":
