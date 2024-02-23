@@ -52,7 +52,12 @@ class ExcelWriter:
         """
         self.wb.save(os.path.join(path, name))
 
-    def csv_to_excel(self, filepath: str):
+    def csv_to_excel(self, filepath: str, destination: str, name: str):
+        try:
+            csv_converter = pd.read_csv(filepath)
+            csv_converter.to_excel(os.path.join(destination, name), index=False, header=True)
+        except:
+            print('Error converting')
 
 
 if __name__ == "__main__":
@@ -72,6 +77,9 @@ if __name__ == "__main__":
 
     #table.add_formula(max_row, 3, f'=SUM(A3:{max_row - 1}3)')
     table.save(str(excel_dir), 'mytable.xlsx')
+
+    csv_file = MyPath('data/bestsellers_with_categories_2022_03_27.csv')
+    table.csv_to_excel(str(csv_file), 'data', 'from_csv.xlsx')
 
 
 
