@@ -49,6 +49,21 @@ def excel_reader_menu():
 	return choice
 
 
+def excel_writer_menu():
+	text = """
+		1 - Записать данные в таблицу
+		2 - Обновить значения в ячейке
+		3 - Добавить формулу в таблицу
+		4 - Сохранить таблицу
+		5 - Преобразовать в CSV
+		-------------------------------
+		0 - завершить работу 
+		"""
+	print(text)
+	choice = int(input())
+	return choice
+
+
 def excel_worker(path):
 	choice = excel_menu()
 	while choice != 0:
@@ -57,13 +72,24 @@ def excel_worker(path):
 				pass
 			case 2:
 				r_menu = excel_reader_menu()
-				table = excelReader.ExcelReader(path)
+				table = excelReader.ExcelReader(str(path))
 				while r_menu != 0:
 					match r_menu:
 						case 1:
-							table.get_sheetnames()
+							sheets = table.get_sheetnames()
+							print(sheets)
+						case 2:
+							name = input('Имя листа: ')
+							cell = input('Адрес ячейки (А1): ')
+							value = table.get_cell_value(name, cell)
+							print(value)
+						case 3:
+							name = input('Имя листа: ')
+							table.iterate_excel_sheet(name)
 
-		choice = menu()
+					r_menu = excel_reader_menu()
+
+		choice = excel_menu()
 
 
 def main():
