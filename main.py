@@ -15,13 +15,55 @@ def menu():
 	7 - Существует ли путь?
 	8 - Получить размер 
 	9 - Время последнего изменения 
-	excel - Работа с файлами excel
+	10 - Работа с файлами excel
 	-------------------------------
 	0 - завершить работу 
 	"""
 	print(text)
 	choice = int(input())
 	return choice
+
+
+def excel_menu():
+	text = """
+	1 - Записать файл excel
+	2 - Прочитать файл excel
+	-------------------------------
+	0 - завершить работу 
+	"""
+	print(text)
+	choice = int(input())
+	return choice
+
+
+def excel_reader_menu():
+	text = """
+		1 - Вывести все листы таблицы
+		2 - Получить значение ячейки
+		3 - Вывести таблицу на экран 
+		-------------------------------
+		0 - завершить работу 
+		"""
+	print(text)
+	choice = int(input())
+	return choice
+
+
+def excel_worker(path):
+	choice = excel_menu()
+	while choice != 0:
+		match choice:
+			case 1:
+				pass
+			case 2:
+				r_menu = excel_reader_menu()
+				table = excelReader.ExcelReader(path)
+				while r_menu != 0:
+					match r_menu:
+						case 1:
+							table.get_sheetnames()
+
+		choice = menu()
 
 
 def main():
@@ -75,6 +117,8 @@ def main():
 					print(e)
 			case 9:
 				print('Последнее изменение:', my_path.get_mtime())
+			case 10:
+				excel_worker(my_path)
 
 		choice = menu()
 
