@@ -69,7 +69,24 @@ def excel_worker(path):
 	while choice != 0:
 		match choice:
 			case 1:
-				pass
+				w_menu = excel_writer_menu()
+				table = excelWriter.ExcelWriter()
+				while w_menu != 0:
+					match w_menu:
+						case 1:
+							pass
+						case 2:
+							row = int(input('Строка: '))
+							col = int(input('Столбец: '))
+							val = int(input('Значение: '))
+							table.update_value(row, col, val)
+							print('Обновлено')
+						case 3:
+							pass
+						case 4:
+							pass
+						case 5:
+							pass
 			case 2:
 				r_menu = excel_reader_menu()
 				table = excelReader.ExcelReader(str(path))
