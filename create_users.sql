@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS `users`
+(`id` INT PRIMARY KEY NOT NULL,
+`name` TEXT NOT NULL,
+`username` TEXT NOT NULL,
+`email` TEXT NOT NULL
+);
