@@ -1,5 +1,7 @@
 import requests as req
 import sqlite3
+
+
 def get_list(url):
 	response = req.get(url)
 	res = response.json()
